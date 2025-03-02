@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../services/graphql_service.dart';
-import '../models/charity.dart';
+import '../core/services/graphql_service.dart';
+import '../core/models/charity.dart';
 
 final graphQLServiceProvider = Provider<GraphQLService>((ref) {
   return GraphQLService();

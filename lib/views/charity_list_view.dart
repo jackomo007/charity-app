@@ -1,8 +1,8 @@
-import 'package:charity_app/theme_provider.dart';
+import 'package:charity_app/core/theme/theme_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fl_chart/fl_chart.dart';
-import '../providers/charity_provider.dart';
+import '../providers/providers.dart';
 
 class CharityStatsScreen extends ConsumerWidget {
   const CharityStatsScreen({super.key});
@@ -15,7 +15,7 @@ class CharityStatsScreen extends ConsumerWidget {
         appBar: AppBar(
           title: Consumer(
             builder: (context, ref, _) {
-              final themeMode = ref.watch(themeProvider);
+              final themeMode = ref.watch(themeViewModelProvider);
               return Text(
                 'Dashboard Donations',
                 style: TextStyle(color: themeMode == ThemeMode.dark ? Colors.white : Colors.black),
@@ -25,12 +25,12 @@ class CharityStatsScreen extends ConsumerWidget {
           actions: [
           Consumer(
             builder: (context, ref, _) {
-              final themeMode = ref.watch(themeProvider);
+              final themeMode = ref.watch(themeViewModelProvider);
               return IconButton(
                 icon: Icon(themeMode == ThemeMode.dark ? Icons.light_mode : Icons.dark_mode),
                 color: themeMode == ThemeMode.dark ? Colors.white : Colors.black,
                 onPressed: () {
-                  ref.read(themeProvider.notifier).toggleTheme();
+                  ref.read(themeViewModelProvider.notifier).toggleTheme();
                 },
               );
             },
@@ -41,7 +41,7 @@ class CharityStatsScreen extends ConsumerWidget {
             preferredSize: const Size.fromHeight(kToolbarHeight),
             child: Consumer(
               builder: (context, ref, _) {
-                final themeMode = ref.watch(themeProvider);
+                final themeMode = ref.watch(themeViewModelProvider);
                 return TabBar(
                   indicatorColor: Colors.black,
                   labelColor: themeMode == ThemeMode.dark ? Colors.white : Colors.black,
